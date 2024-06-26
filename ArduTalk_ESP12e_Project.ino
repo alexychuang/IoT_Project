@@ -410,7 +410,7 @@ void loop() {
         result = pull("D0~");
         if (result != "___NULL_DATA___"){
             Serial.println ("D0~: "+result);
-            if (result.toInt() == 33) {
+            if (result.toInt() == 33) { //<33.5 &&>33.0
                 unsigned long ticker;
                 ticker = millis();
                 while(millis()-ticker < 1500){
@@ -440,14 +440,75 @@ void loop() {
             else if (result.toInt() == 36) {
                 analogWrite(16, 0);
                 analogWrite(5, 0);
-                analogWrite(4, 0);
+                analogWrite(4, 0);                    
                 }
             else if(result.toInt() >= 0 && result.toInt() <= 255){ 
                 analogWrite(16, result.toInt());
                 analogWrite(5, result.toInt());
                 analogWrite(4, result.toInt());
                 }
+            //if (result.toInt() >= 0 && result.toInt() <= 255) analogWrite(16, result.toInt());
         }
+
+        /*result = pull("D1~");
+        if (result != "___NULL_DATA___"){
+            //Serial.println ("D1~: "+result);
+            if (result.toInt() >= 0 && result.toInt() <= 255) analogWrite(5, result.toInt());
+        }    
+
+        result = pull("D2~");
+        if (result != "___NULL_DATA___"){
+            //Serial.println ("D2~: "+result);
+            if (result.toInt() >= 0 && result.toInt() <= 255) analogWrite(4, result.toInt());
+        }
+
+        result = pull("D5");
+        if (result != "___NULL_DATA___"){
+            //Serial.println ("D5: "+result);
+            if (result.toInt() == 1) {
+                analogWrite(16, 255);
+                analogWrite(5, 0);
+                analogWrite(4, 0);
+                }
+            else if (result.toInt() == 2) {
+                analogWrite(16, 0);
+                analogWrite(5, 255);
+                analogWrite(4, 0);
+                }
+            else if (result.toInt() == 3) {
+                analogWrite(16, 0);
+                analogWrite(5, 0);
+                analogWrite(4, 255);
+                }
+            else if(result.toInt() >= 0 && result.toInt() <= 255){ 
+                analogWrite(16, result.toInt());
+                analogWrite(5, result.toInt());
+                analogWrite(4, result.toInt());
+                }
+            //if (result.toInt() > 0 ) digitalWrite(14, 1);
+            //else digitalWrite(14, 0);
+        }
+
+        result = pull("D6");
+        if (result != "___NULL_DATA___"){
+            //Serial.println ("D6: "+result);
+            if (result.toInt() > 0 ) digitalWrite(12, 1);
+            else digitalWrite(12, 0);
+        }
+        
+        result = pull("D7");
+        if (result != "___NULL_DATA___"){
+            //Serial.println ("D7: "+result);
+            if (result.toInt() > 0 ) digitalWrite(13, 1);
+            else digitalWrite(13, 0);
+        }
+
+        result = pull("D8");
+        if (result != "___NULL_DATA___"){
+            //Serial.println ("D8: "+result);
+            if (result.toInt() > 0 ) digitalWrite(15, 1);
+            else digitalWrite(15, 0);
+        }*/
         cycleTimestamp = millis();
     }
 
